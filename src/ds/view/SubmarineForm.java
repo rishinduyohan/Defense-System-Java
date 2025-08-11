@@ -27,7 +27,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnShoot.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
-        //btnTridentMissile.setEnabled(false);
+        btnTridentMissile.setEnabled(false);
     }
 
     /**
@@ -378,7 +378,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
             }else{
                 btnTMissile.setEnabled(false);
             }
-            if(value>=85){
+            if(value>=90){
                 btnTridentMissile.setEnabled(true);
             }else{
                 btnTridentMissile.setEnabled(false);

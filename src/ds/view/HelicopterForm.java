@@ -57,6 +57,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("A78 Eagle");
 
         jLabel2.setText("Soldiers");
 
@@ -221,6 +222,8 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                         .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleDescription("private rocket");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
