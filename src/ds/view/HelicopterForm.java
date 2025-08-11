@@ -53,7 +53,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         txtMessage = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSlider2 = new javax.swing.JSlider();
-        chechPosition = new javax.swing.JCheckBox();
+        checkPosition = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,12 +115,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
 
-        chechPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chechPosition.setText("Position");
-        chechPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chechPosition.addActionListener(new java.awt.event.ActionListener() {
+        checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setText("Position");
+        checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chechPositionActionPerformed(evt);
+                checkPositionActionPerformed(evt);
             }
         });
 
@@ -142,7 +142,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                         .addGap(18, 18, 18)
                         .addComponent(btnMissile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chechPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -182,7 +182,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShoot)
                             .addComponent(btnMissile)
-                            .addComponent(chechPosition))
+                            .addComponent(checkPosition))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLaser)
                         .addGap(31, 31, 31)
@@ -233,7 +233,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-       if (txtMessage.getText() != null) {
+       if (!"".equals(txtMessage.getText())) {
             observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
             txtMessage.setText("");
         } else {
@@ -241,12 +241,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         }
     }//GEN-LAST:event_btnSendActionPerformed
 
-    private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
+    private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chechPositionActionPerformed
+    }//GEN-LAST:event_checkPositionActionPerformed
 
     private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
-        if (txtMessage.getText() != null) {
+        if (!"".equals(txtMessage.getText())) {
             observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
             txtMessage.setText("");
         } else {
@@ -259,7 +259,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
-    private javax.swing.JCheckBox chechPosition;
+    private javax.swing.JCheckBox checkPosition;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -7,6 +7,7 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,7 +52,7 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaTank = new javax.swing.JTextArea();
         jSpinner1 = new javax.swing.JSpinner();
-        chechPosition = new javax.swing.JCheckBox();
+        checkPosition = new javax.swing.JCheckBox();
         btnRotate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +64,12 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         btnSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendActionPerformed(evt);
+            }
+        });
+
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMessageActionPerformed(evt);
             }
         });
 
@@ -108,12 +115,12 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         txtAreaTank.setRows(5);
         jScrollPane1.setViewportView(txtAreaTank);
 
-        chechPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chechPosition.setText("Position");
-        chechPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chechPosition.addActionListener(new java.awt.event.ActionListener() {
+        checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setText("Position");
+        checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chechPositionActionPerformed(evt);
+                checkPositionActionPerformed(evt);
             }
         });
 
@@ -140,7 +147,7 @@ public class TankForm extends javax.swing.JFrame implements Controller{
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnMissile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chechPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnRotate)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -183,7 +190,7 @@ public class TankForm extends javax.swing.JFrame implements Controller{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShoot)
                             .addComponent(btnMissile)
-                            .addComponent(chechPosition))
+                            .addComponent(checkPosition))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRadar)
@@ -210,7 +217,12 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Tank : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
     @Override
     public void message(String message) {
@@ -236,9 +248,18 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRadarActionPerformed
 
-    private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
+    private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chechPositionActionPerformed
+    }//GEN-LAST:event_checkPositionActionPerformed
+
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Tank : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
+    }//GEN-LAST:event_txtMessageActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -247,7 +268,7 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JButton btnRotate;
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
-    private javax.swing.JCheckBox chechPosition;
+    private javax.swing.JCheckBox checkPosition;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

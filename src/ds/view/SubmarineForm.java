@@ -7,6 +7,7 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -58,7 +59,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        chechPosition = new javax.swing.JCheckBox();
+        checkPosition = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +105,12 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
             }
         });
 
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMessageActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Submarine");
@@ -131,12 +138,12 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Oxygen");
 
-        chechPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chechPosition.setText("Position");
-        chechPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chechPosition.addActionListener(new java.awt.event.ActionListener() {
+        checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setText("Position");
+        checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chechPositionActionPerformed(evt);
+                checkPositionActionPerformed(evt);
             }
         });
 
@@ -171,7 +178,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
-                                .addComponent(chechPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -210,7 +217,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                                 .addComponent(btnSonar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(chechPosition)))
+                                .addComponent(checkPosition)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnTMissile)
@@ -275,12 +282,26 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         lblArea.setForeground(Color.RED);
     }
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Submarine : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
 
-    private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
+    private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chechPositionActionPerformed
+    }//GEN-LAST:event_checkPositionActionPerformed
+
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Submarine : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
+    }//GEN-LAST:event_txtMessageActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -290,7 +311,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnSonar;
     private javax.swing.JButton btnTMissile;
     private javax.swing.JButton btnTridentMissile;
-    private javax.swing.JCheckBox chechPosition;
+    private javax.swing.JCheckBox checkPosition;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
