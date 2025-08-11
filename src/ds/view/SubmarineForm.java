@@ -7,6 +7,7 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnShoot.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
-        btnTridentMissile.setEnabled(true);
+        btnTridentMissile.setEnabled(false);
     }
 
     /**
@@ -58,7 +59,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        chechPosition = new javax.swing.JCheckBox();
+        checkPosition = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
         btnSonar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSonar.setText("Sonar Opration");
+        btnSonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonarActionPerformed(evt);
+            }
+        });
 
         btnTMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTMissile.setText("Toahwak Missile");
@@ -104,6 +110,12 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
             }
         });
 
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMessageActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Submarine");
@@ -116,6 +128,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
         btnTridentMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTridentMissile.setText("Trident-2 Missile");
+        btnTridentMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTridentMissileActionPerformed(evt);
+            }
+        });
 
         sliderOxygen.setMajorTickSpacing(10);
         sliderOxygen.setMinorTickSpacing(2);
@@ -131,12 +148,12 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Oxygen");
 
-        chechPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chechPosition.setText("Position");
-        chechPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chechPosition.addActionListener(new java.awt.event.ActionListener() {
+        checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setText("Position");
+        checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chechPositionActionPerformed(evt);
+                checkPositionActionPerformed(evt);
             }
         });
 
@@ -171,7 +188,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
-                                .addComponent(chechPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -210,7 +227,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                                 .addComponent(btnSonar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
-                                .addComponent(chechPosition)))
+                                .addComponent(checkPosition)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnTMissile)
@@ -252,35 +269,57 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Submarine Starts shoot!"+"\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Submarine starts a Toahwak Missile attack!"+"\n");
     }//GEN-LAST:event_btnTMissileActionPerformed
     @Override
-    public void Message(String message) {
+    public void message(String message) {
         txtAreaSubmarine.append(message + "\n");
     }
 
     @Override
-    public void AreaClear() {
+    public void areaClear() {
         lblArea.setText("Area Cleared");
         lblArea.setForeground(Color.GREEN);
     }
 
     @Override
-    public void AreaNotClear() {
+    public void areaNotClear() {
         lblArea.setText("Area Not Cleared");
         lblArea.setForeground(Color.RED);
     }
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        // TODO add your handling code here:
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Submarine : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
 
-    private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
+    private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chechPositionActionPerformed
+    }//GEN-LAST:event_checkPositionActionPerformed
+
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Submarine : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
+    }//GEN-LAST:event_txtMessageActionPerformed
+
+    private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
+        observer.buttonMessage("Submarine Start a Trident Missile attack!"+"\n");
+    }//GEN-LAST:event_btnTridentMissileActionPerformed
+
+    private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
+        observer.buttonMessage("Submarine starts a Sonar attack!"+"\n");
+    }//GEN-LAST:event_btnSonarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -290,7 +329,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnSonar;
     private javax.swing.JButton btnTMissile;
     private javax.swing.JButton btnTridentMissile;
-    private javax.swing.JCheckBox chechPosition;
+    private javax.swing.JCheckBox checkPosition;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,5 +345,45 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JTextArea txtAreaSubmarine;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mainFormMessage(String message) {}
+
+    @Override
+    public void buttonMessage(String message) {
+    }
+
+    @Override
+    public void setPosition(String message) {
+       if(checkPosition.isSelected()){
+            txtAreaSubmarine.append(message);
+        }
+    }
+
+    @Override
+    public void setSliderControll(int value) {
+        if(value>=0 && value<=100){
+            if(value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=40){
+                btnSonar.setEnabled(true);
+            }else{
+                btnSonar.setEnabled(false);
+            }
+            if(value>=70){
+                btnTMissile.setEnabled(true);
+            }else{
+                btnTMissile.setEnabled(false);
+            }
+            if(value>=90){
+                btnTridentMissile.setEnabled(true);
+            }else{
+                btnTridentMissile.setEnabled(false);
+            }
+        }
+    }
 
 }

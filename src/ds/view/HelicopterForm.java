@@ -7,13 +7,16 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author acer
  */
-public class HelicopterForm extends javax.swing.JFrame implements Controller{
+public class HelicopterForm extends javax.swing.JFrame implements Controller {
+
     private DefenceObserver observer;
+
     /**
      * Creates new form HelicopterForm
      */
@@ -50,13 +53,21 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
         txtMessage = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSlider2 = new javax.swing.JSlider();
-        chechPosition = new javax.swing.JCheckBox();
+        checkPosition = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("A78 Eagle");
 
         jLabel2.setText("Soldiers");
 
         jLabel3.setText("Ammo");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         lblArea.setForeground(new java.awt.Color(255, 51, 51));
@@ -72,6 +83,11 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
 
         btnMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMissile.setText("Missile Opration");
+        btnMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMissileActionPerformed(evt);
+            }
+        });
 
         btnLaser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLaser.setText("Laser Opration");
@@ -96,6 +112,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
             }
         });
 
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMessageActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Helicopter");
@@ -106,14 +128,18 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
 
-        chechPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        chechPosition.setText("Position");
-        chechPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chechPosition.addActionListener(new java.awt.event.ActionListener() {
+        checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setText("Position");
+        checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chechPositionActionPerformed(evt);
+                checkPositionActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Fuel");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +147,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
@@ -133,7 +159,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
                         .addGap(18, 18, 18)
                         .addComponent(btnMissile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chechPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -151,10 +177,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
                             .addComponent(jSpinner1)
                             .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,18 +190,13 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShoot)
                             .addComponent(btnMissile)
-                            .addComponent(chechPosition))
+                            .addComponent(checkPosition))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLaser)
                         .addGap(31, 31, 31)
@@ -190,35 +213,86 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleDescription("private rocket");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Helicopter starts shoot !"+"\n");
     }//GEN-LAST:event_btnShootActionPerformed
+    @Override
+    public void message(String message) {
+        txtAreaHelicopter.append(message + "\n");
+    }
 
+    @Override
+    public void areaClear() {
+        lblArea.setText("Area Cleared");
+        lblArea.setForeground(Color.GREEN);
+    }
+
+    @Override
+    public void areaNotClear() {
+        lblArea.setText("Area Not Cleared");
+        lblArea.setForeground(Color.RED);
+    }
+
+    @Override
+    public void mainFormMessage(String message) {}
+     @Override
+    public void buttonMessage(String message) {}
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Helicopter starts Laser attack !"+"\n");
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        // TODO add your handling code here:
+       if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
 
-    private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
+    private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chechPositionActionPerformed
+    }//GEN-LAST:event_checkPositionActionPerformed
+
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
+        if (!"".equals(txtMessage.getText())) {
+            observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
+    }//GEN-LAST:event_txtMessageActionPerformed
+
+    private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
+        observer.buttonMessage("Helicopter starts a Missile attack!"+"\n");
+    }//GEN-LAST:event_btnMissileActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaser;
     private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
-    private javax.swing.JCheckBox chechPosition;
+    private javax.swing.JCheckBox checkPosition;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -233,19 +307,33 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void Message(String message) {
-        txtAreaHelicopter.append(message + "\n");
+    public void setPosition(String message) {
+        if(checkPosition.isSelected()){
+            txtAreaHelicopter.append(message);
+        }
     }
 
     @Override
-    public void AreaClear() {
-        lblArea.setText("Area Cleared");
-        lblArea.setForeground(Color.GREEN);
+    public void setSliderControll(int value) {
+        if(value>=0 && value<=100){
+            if(value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=50){
+                btnMissile.setEnabled(true);
+            }else{
+                btnMissile.setEnabled(false);
+            }
+            if(value>=80){
+                btnLaser.setEnabled(true);
+            }else{
+                btnLaser.setEnabled(false);
+            }
+        }
     }
 
-    @Override
-    public void AreaNotClear() {
-        lblArea.setText("Area Not Cleared");
-        lblArea.setForeground(Color.RED);
-    }
+   
+
 }

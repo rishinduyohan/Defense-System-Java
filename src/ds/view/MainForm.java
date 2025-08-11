@@ -6,6 +6,7 @@ package ds.view;
 
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -35,9 +36,9 @@ public class MainForm extends javax.swing.JFrame implements Controller{
         jLabel5 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        messageArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtShowMessage = new javax.swing.JTextArea();
+        areaShowMessage = new javax.swing.JTextArea();
         defenceComboBox = new javax.swing.JComboBox<>();
         txtAmmoCount = new javax.swing.JTextField();
         txtFuelCount = new javax.swing.JTextField();
@@ -50,6 +51,7 @@ public class MainForm extends javax.swing.JFrame implements Controller{
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Controll Panel");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -98,15 +100,15 @@ public class MainForm extends javax.swing.JFrame implements Controller{
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        messageArea.setColumns(20);
+        messageArea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        messageArea.setRows(5);
+        jScrollPane1.setViewportView(messageArea);
 
-        txtShowMessage.setColumns(20);
-        txtShowMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtShowMessage.setRows(5);
-        jScrollPane2.setViewportView(txtShowMessage);
+        areaShowMessage.setColumns(20);
+        areaShowMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        areaShowMessage.setRows(5);
+        jScrollPane2.setViewportView(areaShowMessage);
 
         defenceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Defence", "Helicopter", "Tank", "Submarine" }));
         defenceComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -204,16 +206,12 @@ public class MainForm extends javax.swing.JFrame implements Controller{
                     .addComponent(btnCollectInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(checkAreraClear, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtMessageMain, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkPrivate))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtSolderCount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
@@ -223,23 +221,29 @@ public class MainForm extends javax.swing.JFrame implements Controller{
                                     .addComponent(txtFuelCount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
-                                .addComponent(txtAmmoCount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(9, 9, 9)))
+                                .addComponent(txtAmmoCount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtMessageMain, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkPrivate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(11, 11, 11)
                         .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 17, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleDescription("Team Froza");
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCollectInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollectInfoActionPerformed
@@ -247,7 +251,16 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_btnCollectInfoActionPerformed
 
     private void txtMessageMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageMainActionPerformed
-      
+       if (!"".equals(txtMessageMain.getText())) {
+           if (checkPrivate.isSelected()) {
+                observer.setPosition("Main Controller :" + txtMessageMain.getText()+"\n");
+            } else {
+                observer.setMessage("Main Controller :" + txtMessageMain.getText()+"\n");
+            }
+            txtMessageMain.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message commander!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_txtMessageMainActionPerformed
 
     private void checkPrivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPrivateActionPerformed
@@ -255,20 +268,38 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_checkPrivateActionPerformed
     
     @Override
-    public void Message(String message) {}
+    public void message(String message) {}
 
     @Override
-    public void AreaClear() {}
+    public void areaClear() {}
 
     @Override
-    public void AreaNotClear() {}
+    public void areaNotClear() {}
     
+    @Override
+    public void mainFormMessage(String message) {
+       messageArea.append(message);
+    }
+    @Override
+    public void buttonMessage(String message) {
+        areaShowMessage.append(message);
+    }
+
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-       
+         if (!"".equals(txtMessageMain.getText())) {
+            if (checkPrivate.isSelected()) {
+                observer.setPosition("Main Controller :" + txtMessageMain.getText()+"\n");
+            } else {
+                observer.setMessage("Main Controller :" + txtMessageMain.getText()+"\n");
+            }
+            txtMessageMain.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message commander!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-      
+      observer.setSliderControll(jSlider1.getValue());
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void defenceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceComboBoxActionPerformed
@@ -285,9 +316,9 @@ public class MainForm extends javax.swing.JFrame implements Controller{
 
     private void checkAreraClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAreraClearActionPerformed
        if(checkAreraClear.isSelected()){
-          observer.AreaClear();
+          observer.areaClear();
        }else{
-           observer.AreaNotClear();
+           observer.areaNotClear();
        }
     }//GEN-LAST:event_checkAreraClearActionPerformed
 
@@ -297,6 +328,7 @@ public class MainForm extends javax.swing.JFrame implements Controller{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaShowMessage;
     private javax.swing.JButton btnCollectInfo;
     private javax.swing.JButton btnSend;
     private javax.swing.JCheckBox checkAreraClear;
@@ -310,13 +342,22 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea messageArea;
     private javax.swing.JTextField txtAmmoCount;
     private javax.swing.JTextField txtFuelCount;
     private javax.swing.JTextField txtMessageMain;
-    private javax.swing.JTextArea txtShowMessage;
     private javax.swing.JTextField txtSolderCount;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setPosition(String message) {
+
+    }
+
+    @Override
+    public void setSliderControll(int value) {
+    }
+
 
 }

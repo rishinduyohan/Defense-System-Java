@@ -22,29 +22,57 @@ public class DefenceObserver implements Controller {
 
     public void setMessage(String message) {
         for (int i = 0; i < nextIndex; i++) {
-            defenceObserverArray[i].Message(message);
+            defenceObserverArray[i].message(message);
         }
     }
 
     @Override
-    public void Message(String message) {
+    public void message(String message) {
          if (message != "") {
             this.message = message;
-            Message(message);
+            message(message);
         }
     }
 
     @Override
-    public void AreaClear() {
+    public void areaClear() {
         for (int i = 0; i < nextIndex; i++) {
-            defenceObserverArray[i].AreaClear();
+            defenceObserverArray[i].areaClear();
         }
     }
 
     @Override
-    public void AreaNotClear() {
+    public void areaNotClear() {
         for (int i = 0; i < nextIndex; i++) {
-            defenceObserverArray[i].AreaNotClear();
+            defenceObserverArray[i].areaNotClear();
+        }
+    }
+
+    @Override
+    public void mainFormMessage(String message) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].mainFormMessage(message);
+        }
+    }
+
+    @Override
+    public void buttonMessage(String message) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].buttonMessage(message);
+        }
+    }
+
+    @Override
+    public void setPosition(String message) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].setPosition(message);
+        }
+    }
+
+    @Override
+    public void setSliderControll(int value) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].setSliderControll(value);
         }
     }
 
