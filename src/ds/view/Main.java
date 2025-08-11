@@ -15,5 +15,8 @@ public class Main {
      */
     public static void main(String args[]) {
         new HelicopterForm().setVisible(true);
+        new SubmarineForm().setVisible(true);
+        new TankForm().setVisible(true);
+        new MainForm().setVisible(true);
     }
 }
