@@ -24,7 +24,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         this.observer = observer;
         initComponents();
         setVisible(true);
-        btnLaser.setEnabled(false);
+        //btnLaser.setEnabled(false);
         btnMissile.setEnabled(false);
        // btnShoot.setEnabled(false);
     }
@@ -75,6 +75,11 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
         btnMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMissile.setText("Missile Opration");
+        btnMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMissileActionPerformed(evt);
+            }
+        });
 
         btnLaser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLaser.setText("Laser Opration");
@@ -231,7 +236,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
      @Override
     public void buttonMessage(String message) {}
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Helicopter starts Laser attack !"+"\n");
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -255,6 +260,10 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
             JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
         }
     }//GEN-LAST:event_txtMessageActionPerformed
+
+    private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
+        observer.buttonMessage("Helicopter starts a Missile attack!"+"\n");
+    }//GEN-LAST:event_btnMissileActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaser;

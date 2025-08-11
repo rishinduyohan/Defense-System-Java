@@ -217,6 +217,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Missile Opration"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMissileActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRadar">
       <Properties>
@@ -270,6 +273,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Rotate Shooting"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRotateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

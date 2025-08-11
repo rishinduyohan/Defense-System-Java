@@ -27,7 +27,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnShoot.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
-        btnTridentMissile.setEnabled(false);
+        //btnTridentMissile.setEnabled(false);
     }
 
     /**
@@ -81,6 +81,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
         btnSonar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSonar.setText("Sonar Opration");
+        btnSonar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonarActionPerformed(evt);
+            }
+        });
 
         btnTMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTMissile.setText("Toahwak Missile");
@@ -123,6 +128,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
         btnTridentMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTridentMissile.setText("Trident-2 Missile");
+        btnTridentMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTridentMissileActionPerformed(evt);
+            }
+        });
 
         sliderOxygen.setMajorTickSpacing(10);
         sliderOxygen.setMinorTickSpacing(2);
@@ -259,11 +269,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Submarine Starts shoot!"+"\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Submarine starts a Toahwak Missile attack!"+"\n");
     }//GEN-LAST:event_btnTMissileActionPerformed
     @Override
     public void message(String message) {
@@ -303,6 +313,14 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         }
     }//GEN-LAST:event_txtMessageActionPerformed
 
+    private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
+        observer.buttonMessage("Submarine Start a Trident Missile attack!"+"\n");
+    }//GEN-LAST:event_btnTridentMissileActionPerformed
+
+    private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
+        observer.buttonMessage("Submarine starts a Sonar attack!"+"\n");
+    }//GEN-LAST:event_btnSonarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner ammoSpinner;
@@ -333,7 +351,6 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     @Override
     public void buttonMessage(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -212,6 +212,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Sonar Opration"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSonarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTMissile">
       <Properties>
@@ -289,6 +292,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Trident-2 Missile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTridentMissileActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSlider" name="sliderOxygen">
       <Properties>

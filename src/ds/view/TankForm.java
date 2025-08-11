@@ -23,9 +23,9 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         initComponents();
         setVisible(true);
         btnMissile.setEnabled(false);
-        btnRadar.setEnabled(false);
+        //btnRadar.setEnabled(false);
         btnRotate.setEnabled(false);
-        btnShoot.setEnabled(false);
+        //btnShoot.setEnabled(false);
     }
 
     /**
@@ -101,6 +101,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
         btnMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMissile.setText("Missile Opration");
+        btnMissile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMissileActionPerformed(evt);
+            }
+        });
 
         btnRadar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRadar.setText("Radar Opration");
@@ -126,6 +131,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
         btnRotate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRotate.setText("Rotate Shooting");
+        btnRotate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRotateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -241,11 +251,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         lblArea.setForeground(Color.RED);
     }
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Tank starts shoot !"+"\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnRadarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarActionPerformed
-        // TODO add your handling code here:
+         observer.buttonMessage("Tank starts a Radar attack!"+"\n");
     }//GEN-LAST:event_btnRadarActionPerformed
 
     private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
@@ -260,6 +270,14 @@ public class TankForm extends javax.swing.JFrame implements Controller{
             JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
         }
     }//GEN-LAST:event_txtMessageActionPerformed
+
+    private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
+         observer.buttonMessage("Tank starts a Missile attack!"+"\n");
+    }//GEN-LAST:event_btnMissileActionPerformed
+
+    private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
+         observer.buttonMessage("Tank starts a Rotate Shooting!"+"\n");
+    }//GEN-LAST:event_btnRotateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,6 +305,5 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
     @Override
     public void buttonMessage(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
