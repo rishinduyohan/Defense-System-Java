@@ -353,4 +353,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     public void buttonMessage(String message) {
     }
 
+    @Override
+    public void setPosition(String message) {
+       if(checkPosition.isSelected()){
+            txtAreaSubmarine.append(message);
+        }
+    }
+
 }

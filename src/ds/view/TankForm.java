@@ -306,4 +306,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     @Override
     public void buttonMessage(String message) {
     }
+
+    @Override
+    public void setPosition(String message) {
+        if(checkPosition.isSelected()){
+            txtAreaTank.append(message);
+        }
+    }
 }

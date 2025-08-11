@@ -62,4 +62,11 @@ public class DefenceObserver implements Controller {
         }
     }
 
+    @Override
+    public void setPosition(String message) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].setPosition(message);
+        }
+    }
+
 }
