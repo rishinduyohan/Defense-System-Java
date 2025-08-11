@@ -17,6 +17,7 @@ public class Main {
      */
     public static void main(String args[]) {
         DefenceObserver dfo = new DefenceObserver();
-        new MainForm(dfo).setVisible(true);
+        dfo.addDefenceObserver(new MainForm(dfo));
+        dfo.addDefenceObserver(new HelicopterForm(dfo));
     }
 }

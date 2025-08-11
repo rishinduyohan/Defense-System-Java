@@ -12,25 +12,25 @@ import ds.controll.Controller;
  */
 public class DefenceObserver implements Controller {
 
-    private DefenceObserver[] defenceObserverArray = new DefenceObserver[100];
+    private Controller[] defenceObserverArray = new Controller[100];
     private int nextIndex;
     private String message;
 
-    public void addDefenceObserver(DefenceObserver obj) {
+    public void addDefenceObserver(Controller obj) {
         defenceObserverArray[nextIndex++] = obj;
     }
 
     public void setMessage(String message) {
-        if (message != "") {
-            this.message = message;
-            Message(message);
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].Message(message);
         }
     }
 
     @Override
     public void Message(String message) {
-        for (int i = 0; i < nextIndex; i++) {
-            defenceObserverArray[i].Message(message);
+         if (message != "") {
+            this.message = message;
+            Message(message);
         }
     }
 
