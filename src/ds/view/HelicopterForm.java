@@ -7,13 +7,16 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author acer
  */
-public class HelicopterForm extends javax.swing.JFrame implements Controller{
+public class HelicopterForm extends javax.swing.JFrame implements Controller {
+
     private DefenceObserver observer;
+
     /**
      * Creates new form HelicopterForm
      */
@@ -93,6 +96,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
         btnSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSendActionPerformed(evt);
+            }
+        });
+
+        txtMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMessageActionPerformed(evt);
             }
         });
 
@@ -200,18 +209,50 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnShootActionPerformed
+    @Override
+    public void message(String message) {
+        txtAreaHelicopter.append(message + "\n");
+    }
 
+    @Override
+    public void areaClear() {
+        lblArea.setText("Area Cleared");
+        lblArea.setForeground(Color.GREEN);
+    }
+
+    @Override
+    public void areaNotClear() {
+        lblArea.setText("Area Not Cleared");
+        lblArea.setForeground(Color.RED);
+    }
+
+    @Override
+    public void mainFormMessage(String message) {}
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        // TODO add your handling code here:
+       if (txtMessage.getText() != null) {
+            observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void chechPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chechPositionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chechPositionActionPerformed
+
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
+        if (txtMessage.getText() != null) {
+            observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
+            txtMessage.setText("");
+        } else {
+            JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
+        }
+    }//GEN-LAST:event_txtMessageActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaser;
@@ -232,20 +273,4 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void Message(String message) {
-        txtAreaHelicopter.append(message + "\n");
-    }
-
-    @Override
-    public void AreaClear() {
-        lblArea.setText("Area Cleared");
-        lblArea.setForeground(Color.GREEN);
-    }
-
-    @Override
-    public void AreaNotClear() {
-        lblArea.setText("Area Not Cleared");
-        lblArea.setForeground(Color.RED);
-    }
 }

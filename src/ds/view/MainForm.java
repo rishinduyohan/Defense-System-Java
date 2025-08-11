@@ -35,7 +35,7 @@ public class MainForm extends javax.swing.JFrame implements Controller{
         jLabel5 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        messageArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtShowMessage = new javax.swing.JTextArea();
         defenceComboBox = new javax.swing.JComboBox<>();
@@ -98,10 +98,10 @@ public class MainForm extends javax.swing.JFrame implements Controller{
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        messageArea.setColumns(20);
+        messageArea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        messageArea.setRows(5);
+        jScrollPane1.setViewportView(messageArea);
 
         txtShowMessage.setColumns(20);
         txtShowMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -255,14 +255,18 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_checkPrivateActionPerformed
     
     @Override
-    public void Message(String message) {}
+    public void message(String message) {}
 
     @Override
-    public void AreaClear() {}
+    public void areaClear() {}
 
     @Override
-    public void AreaNotClear() {}
+    public void areaNotClear() {}
     
+    @Override
+    public void mainFormMessage(String message) {
+        messageArea.append(message);
+    }
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
        
     }//GEN-LAST:event_btnSendActionPerformed
@@ -285,9 +289,9 @@ public class MainForm extends javax.swing.JFrame implements Controller{
 
     private void checkAreraClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAreraClearActionPerformed
        if(checkAreraClear.isSelected()){
-          observer.AreaClear();
+          observer.areaClear();
        }else{
-           observer.AreaNotClear();
+           observer.areaNotClear();
        }
     }//GEN-LAST:event_checkAreraClearActionPerformed
 
@@ -310,13 +314,14 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea messageArea;
     private javax.swing.JTextField txtAmmoCount;
     private javax.swing.JTextField txtFuelCount;
     private javax.swing.JTextField txtMessageMain;
     private javax.swing.JTextArea txtShowMessage;
     private javax.swing.JTextField txtSolderCount;
     // End of variables declaration//GEN-END:variables
+
 
 }

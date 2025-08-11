@@ -26,7 +26,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnShoot.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
-        btnTridentMissile.setEnabled(true);
+        btnTridentMissile.setEnabled(false);
     }
 
     /**
@@ -259,18 +259,18 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTMissileActionPerformed
     @Override
-    public void Message(String message) {
+    public void message(String message) {
         txtAreaSubmarine.append(message + "\n");
     }
 
     @Override
-    public void AreaClear() {
+    public void areaClear() {
         lblArea.setText("Area Cleared");
         lblArea.setForeground(Color.GREEN);
     }
 
     @Override
-    public void AreaNotClear() {
+    public void areaNotClear() {
         lblArea.setText("Area Not Cleared");
         lblArea.setForeground(Color.RED);
     }
@@ -306,5 +306,8 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JTextArea txtAreaSubmarine;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mainFormMessage(String message) {}
 
 }
