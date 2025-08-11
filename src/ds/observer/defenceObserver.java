@@ -4,10 +4,14 @@
  */
 package ds.observer;
 
+import ds.controll.Controller;
+
 /**
  *
  * @author acer
  */
-public class defenceObserver {
-    
+public class DefenceObserver implements Controller{
+    private DefenceObserver[] defenceObserverArray = new DefenceObserver[100];
+    private int nextIndex;
+    private String message;
 }
