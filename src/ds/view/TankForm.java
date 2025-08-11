@@ -313,4 +313,30 @@ public class TankForm extends javax.swing.JFrame implements Controller{
             txtAreaTank.append(message);
         }
     }
+
+    @Override
+    public void setSliderControll(int value) {
+        if(value>=0 && value<=100){
+            if(value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=40){
+                btnMissile.setEnabled(true);
+            }else{
+                btnMissile.setEnabled(false);
+            }
+            if(value>=60){
+                btnRadar.setEnabled(true);
+            }else{
+                btnRadar.setEnabled(false);
+            }
+            if(value>=80){
+                btnRotate.setEnabled(true);
+            }else{
+                btnRotate.setEnabled(false);
+            }
+        }
+    }
 }

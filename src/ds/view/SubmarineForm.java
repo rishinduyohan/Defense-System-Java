@@ -360,4 +360,30 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         }
     }
 
+    @Override
+    public void setSliderControll(int value) {
+        if(value>=0 && value<=100){
+            if(value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=40){
+                btnSonar.setEnabled(true);
+            }else{
+                btnSonar.setEnabled(false);
+            }
+            if(value>=70){
+                btnTMissile.setEnabled(true);
+            }else{
+                btnTMissile.setEnabled(false);
+            }
+            if(value>=85){
+                btnTridentMissile.setEnabled(true);
+            }else{
+                btnTridentMissile.setEnabled(false);
+            }
+        }
+    }
+
 }

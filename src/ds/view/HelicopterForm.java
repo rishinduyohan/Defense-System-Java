@@ -24,9 +24,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         this.observer = observer;
         initComponents();
         setVisible(true);
-        //btnLaser.setEnabled(false);
+        btnLaser.setEnabled(false);
         btnMissile.setEnabled(false);
-       // btnShoot.setEnabled(false);
+        btnShoot.setEnabled(false);
     }
 
     /**
@@ -307,6 +307,27 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     public void setPosition(String message) {
         if(checkPosition.isSelected()){
             txtAreaHelicopter.append(message);
+        }
+    }
+
+    @Override
+    public void setSliderControll(int value) {
+        if(value>=0 && value<=100){
+            if(value>=20){
+                btnShoot.setEnabled(true);
+            }else{
+                btnShoot.setEnabled(false);
+            }
+            if(value>=50){
+                btnMissile.setEnabled(true);
+            }else{
+                btnMissile.setEnabled(false);
+            }
+            if(value>=80){
+                btnLaser.setEnabled(true);
+            }else{
+                btnLaser.setEnabled(false);
+            }
         }
     }
 

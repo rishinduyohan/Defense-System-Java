@@ -11,4 +11,5 @@ public interface Controller {
     public void mainFormMessage(String message);
     public void buttonMessage(String message);
     public void setPosition(String message);
+    public void setSliderControll(int value);
 }

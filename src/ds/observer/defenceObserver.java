@@ -69,4 +69,11 @@ public class DefenceObserver implements Controller {
         }
     }
 
+    @Override
+    public void setSliderControll(int value) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].setSliderControll(value);
+        }
+    }
+
 }
