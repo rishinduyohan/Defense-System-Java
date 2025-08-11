@@ -4,6 +4,8 @@
  */
 package ds.view;
 
+import ds.observer.DefenceObserver;
+
 /**
  *
  * @author acer
@@ -14,9 +16,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        new HelicopterForm().setVisible(true);
-        new SubmarineForm().setVisible(true);
-        new TankForm().setVisible(true);
-        new MainForm().setVisible(true);
+        DefenceObserver dfo = new DefenceObserver();
+        new MainForm(dfo).setVisible(true);
     }
 }

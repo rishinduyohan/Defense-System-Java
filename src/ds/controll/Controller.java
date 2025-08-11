@@ -5,5 +5,7 @@
 package ds.controll;
 
 public interface Controller {
-    
+    public void Message(String message);
+    public void AreaClear();
+    public void AreaNotClear();
 }
