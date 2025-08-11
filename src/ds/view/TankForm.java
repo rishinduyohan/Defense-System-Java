@@ -4,17 +4,27 @@
  */
 package ds.view;
 
+import ds.controll.Controller;
+import ds.observer.DefenceObserver;
+import java.awt.Color;
+
 /**
  *
  * @author acer
  */
-public class TankForm extends javax.swing.JFrame {
-
+public class TankForm extends javax.swing.JFrame implements Controller{
+    private DefenceObserver observer;
     /**
      * Creates new form TankForm
      */
-    public TankForm() {
+    public TankForm(DefenceObserver observer) {
+        this.observer = observer;
         initComponents();
+        setVisible(true);
+        btnMissile.setEnabled(false);
+        btnRadar.setEnabled(false);
+        btnRotate.setEnabled(false);
+        btnShoot.setEnabled(false);
     }
 
     /**
@@ -34,7 +44,7 @@ public class TankForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSlider2 = new javax.swing.JSlider();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblArea = new javax.swing.JLabel();
         btnShoot = new javax.swing.JButton();
         btnMissile = new javax.swing.JButton();
         btnRadar = new javax.swing.JButton();
@@ -70,9 +80,9 @@ public class TankForm extends javax.swing.JFrame {
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
 
-        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setText("Area is Not Cleared");
+        lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
+        lblArea.setForeground(new java.awt.Color(255, 51, 51));
+        lblArea.setText("Area is Not Cleared");
 
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnShoot.setText("Shoot");
@@ -134,7 +144,7 @@ public class TankForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnRotate)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -163,7 +173,7 @@ public class TankForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
@@ -202,7 +212,22 @@ public class TankForm extends javax.swing.JFrame {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSendActionPerformed
+    @Override
+    public void Message(String message) {
+        txtAreaTank.append(message + "\n");
+    }
 
+    @Override
+    public void AreaClear() {
+        lblArea.setText("Area Cleared");
+        lblArea.setForeground(Color.GREEN);
+    }
+
+    @Override
+    public void AreaNotClear() {
+        lblArea.setText("Area Not Cleared");
+        lblArea.setForeground(Color.RED);
+    }
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnShootActionPerformed
@@ -215,40 +240,6 @@ public class TankForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chechPositionActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TankForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TankForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TankForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TankForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TankForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMissile;
@@ -257,7 +248,6 @@ public class TankForm extends javax.swing.JFrame {
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
     private javax.swing.JCheckBox chechPosition;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -266,6 +256,7 @@ public class TankForm extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblArea;
     private javax.swing.JTextArea txtAreaTank;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
