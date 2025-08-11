@@ -4,10 +4,6 @@
  */
 package ds.controll;
 
-/**
- *
- * @author acer
- */
 public interface Controller {
     
 }
