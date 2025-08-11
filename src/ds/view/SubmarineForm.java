@@ -4,17 +4,29 @@
  */
 package ds.view;
 
+import ds.controll.Controller;
+import ds.observer.DefenceObserver;
+import java.awt.Color;
+
 /**
  *
  * @author acer
  */
-public class SubmarineForm extends javax.swing.JFrame {
+public class SubmarineForm extends javax.swing.JFrame implements Controller {
+
+    private DefenceObserver observer;
 
     /**
      * Creates new form SubmarineForm
      */
-    public SubmarineForm() {
+    public SubmarineForm(DefenceObserver observer) {
+        this.observer = observer;
         initComponents();
+        setVisible(true);
+        btnShoot.setEnabled(false);
+        btnSonar.setEnabled(false);
+        btnTMissile.setEnabled(false);
+        btnTridentMissile.setEnabled(true);
     }
 
     /**
@@ -31,7 +43,7 @@ public class SubmarineForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblArea = new javax.swing.JLabel();
         btnShoot = new javax.swing.JButton();
         btnSonar = new javax.swing.JButton();
         btnTMissile = new javax.swing.JButton();
@@ -54,9 +66,9 @@ public class SubmarineForm extends javax.swing.JFrame {
 
         jLabel3.setText("Ammo");
 
-        jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel1.setText("Area is Not Cleared");
+        lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
+        lblArea.setForeground(new java.awt.Color(255, 51, 51));
+        lblArea.setText("Area is Not Cleared");
 
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnShoot.setText("Shoot");
@@ -139,7 +151,7 @@ public class SubmarineForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -190,7 +202,7 @@ public class SubmarineForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,7 +258,22 @@ public class SubmarineForm extends javax.swing.JFrame {
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTMissileActionPerformed
+    @Override
+    public void Message(String message) {
+        txtAreaSubmarine.append(message + "\n");
+    }
 
+    @Override
+    public void AreaClear() {
+        lblArea.setText("Area Cleared");
+        lblArea.setForeground(Color.GREEN);
+    }
+
+    @Override
+    public void AreaNotClear() {
+        lblArea.setText("Area Not Cleared");
+        lblArea.setForeground(Color.RED);
+    }
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSendActionPerformed
@@ -255,40 +282,6 @@ public class SubmarineForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chechPositionActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubmarineForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubmarineForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubmarineForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubmarineForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SubmarineForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner ammoSpinner;
@@ -298,7 +291,6 @@ public class SubmarineForm extends javax.swing.JFrame {
     private javax.swing.JButton btnTMissile;
     private javax.swing.JButton btnTridentMissile;
     private javax.swing.JCheckBox chechPosition;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -307,10 +299,12 @@ public class SubmarineForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblArea;
     private javax.swing.JSlider sliderEnergy;
     private javax.swing.JSlider sliderOxygen;
     private javax.swing.JSpinner solderSpinner;
     private javax.swing.JTextArea txtAreaSubmarine;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
+
 }

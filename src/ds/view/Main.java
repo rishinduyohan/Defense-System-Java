@@ -19,5 +19,7 @@ public class Main {
         DefenceObserver dfo = new DefenceObserver();
         dfo.addDefenceObserver(new MainForm(dfo));
         dfo.addDefenceObserver(new HelicopterForm(dfo));
+        dfo.addDefenceObserver(new SubmarineForm(dfo));
+        dfo.addDefenceObserver(new TankForm(dfo));
     }
 }
