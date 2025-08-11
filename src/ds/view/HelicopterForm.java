@@ -26,7 +26,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         setVisible(true);
         btnLaser.setEnabled(false);
         btnMissile.setEnabled(false);
-        btnShoot.setEnabled(false);
+       // btnShoot.setEnabled(false);
     }
 
     /**
@@ -207,7 +207,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        // TODO add your handling code here:
+        observer.buttonMessage("Helicopter starts shoot !"+"\n");
     }//GEN-LAST:event_btnShootActionPerformed
     @Override
     public void message(String message) {
@@ -228,6 +228,8 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     @Override
     public void mainFormMessage(String message) {}
+     @Override
+    public void buttonMessage(String message) {}
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLaserActionPerformed
@@ -272,5 +274,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JTextArea txtAreaHelicopter;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
+
+   
 
 }

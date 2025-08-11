@@ -284,4 +284,9 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
     @Override
     public void mainFormMessage(String message) {}
+
+    @Override
+    public void buttonMessage(String message) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

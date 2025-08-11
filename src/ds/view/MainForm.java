@@ -37,7 +37,7 @@ public class MainForm extends javax.swing.JFrame implements Controller{
         jScrollPane1 = new javax.swing.JScrollPane();
         messageArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtShowMessage = new javax.swing.JTextArea();
+        areaShowMessage = new javax.swing.JTextArea();
         defenceComboBox = new javax.swing.JComboBox<>();
         txtAmmoCount = new javax.swing.JTextField();
         txtFuelCount = new javax.swing.JTextField();
@@ -103,10 +103,10 @@ public class MainForm extends javax.swing.JFrame implements Controller{
         messageArea.setRows(5);
         jScrollPane1.setViewportView(messageArea);
 
-        txtShowMessage.setColumns(20);
-        txtShowMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtShowMessage.setRows(5);
-        jScrollPane2.setViewportView(txtShowMessage);
+        areaShowMessage.setColumns(20);
+        areaShowMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        areaShowMessage.setRows(5);
+        jScrollPane2.setViewportView(areaShowMessage);
 
         defenceComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Defence", "Helicopter", "Tank", "Submarine" }));
         defenceComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +267,11 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     public void mainFormMessage(String message) {
         messageArea.append(message);
     }
+    @Override
+    public void buttonMessage(String message) {
+        areaShowMessage.append(message);
+    }
+
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
        
     }//GEN-LAST:event_btnSendActionPerformed
@@ -301,6 +306,7 @@ public class MainForm extends javax.swing.JFrame implements Controller{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaShowMessage;
     private javax.swing.JButton btnCollectInfo;
     private javax.swing.JButton btnSend;
     private javax.swing.JCheckBox checkAreraClear;
@@ -319,7 +325,6 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JTextField txtAmmoCount;
     private javax.swing.JTextField txtFuelCount;
     private javax.swing.JTextField txtMessageMain;
-    private javax.swing.JTextArea txtShowMessage;
     private javax.swing.JTextField txtSolderCount;
     // End of variables declaration//GEN-END:variables
 

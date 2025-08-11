@@ -9,4 +9,5 @@ public interface Controller {
     public void areaClear();
     public void areaNotClear();
     public void mainFormMessage(String message);
+    public void buttonMessage(String message);
 }

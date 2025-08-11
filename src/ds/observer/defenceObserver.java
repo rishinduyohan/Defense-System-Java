@@ -55,4 +55,11 @@ public class DefenceObserver implements Controller {
         }
     }
 
+    @Override
+    public void buttonMessage(String message) {
+        for (int i = 0; i < nextIndex; i++) {
+            defenceObserverArray[i].buttonMessage(message);
+        }
+    }
+
 }
