@@ -79,20 +79,31 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         checkPosition = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(solderSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 184, 97, -1));
+        getContentPane().add(ammoSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 209, 97, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Soldiers");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 184, 48, -1));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ammo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 212, 48, -1));
 
         energyText.setBackground(new java.awt.Color(255, 255, 153));
         energyText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(energyText, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 88, 73, 29));
 
         lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         lblArea.setForeground(new java.awt.Color(255, 51, 51));
         lblArea.setText("Area is Not Cleared");
+        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 232, 31));
 
+        btnShoot.setBackground(new java.awt.Color(153, 153, 255));
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnShoot.setText("Shoot");
         btnShoot.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +111,9 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 btnShootActionPerformed(evt);
             }
         });
+        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 88, 142, -1));
 
+        btnSonar.setBackground(new java.awt.Color(255, 153, 255));
         btnSonar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSonar.setText("Sonar Opration");
         btnSonar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +121,9 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 btnSonarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSonar, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 88, 144, -1));
 
+        btnTMissile.setBackground(new java.awt.Color(0, 255, 153));
         btnTMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTMissile.setText("Toahwak Missile");
         btnTMissile.addActionListener(new java.awt.event.ActionListener() {
@@ -116,11 +131,16 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 btnTMissileActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTMissile, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 127, -1, -1));
 
+        txtAreaSubmarine.setBackground(new java.awt.Color(0, 0, 0));
         txtAreaSubmarine.setColumns(20);
         txtAreaSubmarine.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        txtAreaSubmarine.setForeground(new java.awt.Color(51, 153, 0));
         txtAreaSubmarine.setRows(5);
         jScrollPane1.setViewportView(txtAreaSubmarine);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 184, 301, 122));
 
         btnSend.setBackground(new java.awt.Color(0, 204, 0));
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -131,50 +151,69 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 btnSendActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 324, 81, 30));
 
+        txtMessage.setBackground(new java.awt.Color(51, 51, 51));
+        txtMessage.setForeground(new java.awt.Color(51, 204, 0));
         txtMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMessageActionPerformed(evt);
             }
         });
+        getContentPane().add(txtMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 325, 202, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Submarine");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 698, 51));
 
+        sliderEnergy.setForeground(new java.awt.Color(255, 255, 255));
         sliderEnergy.setMajorTickSpacing(10);
         sliderEnergy.setMinorTickSpacing(2);
         sliderEnergy.setOrientation(javax.swing.JSlider.VERTICAL);
         sliderEnergy.setPaintLabels(true);
         sliderEnergy.setPaintTicks(true);
+        getContentPane().add(sliderEnergy, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 123, 71, 264));
 
+        btnTridentMissile.setBackground(new java.awt.Color(102, 0, 0));
         btnTridentMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTridentMissile.setForeground(new java.awt.Color(255, 255, 255));
         btnTridentMissile.setText("Trident-2 Missile");
         btnTridentMissile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTridentMissileActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTridentMissile, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 127, -1, -1));
 
+        sliderOxygen.setBackground(new java.awt.Color(255, 255, 255));
+        sliderOxygen.setForeground(new java.awt.Color(255, 255, 255));
         sliderOxygen.setMajorTickSpacing(10);
         sliderOxygen.setMinorTickSpacing(2);
         sliderOxygen.setOrientation(javax.swing.JSlider.VERTICAL);
         sliderOxygen.setPaintLabels(true);
         sliderOxygen.setPaintTicks(true);
+        getContentPane().add(sliderOxygen, new org.netbeans.lib.awtextra.AbsoluteConstraints(622, 125, 71, 262));
 
         oxygenText.setBackground(new java.awt.Color(153, 204, 255));
-        oxygenText.setForeground(new java.awt.Color(255, 255, 255));
         oxygenText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(oxygenText, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 88, 73, 29));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Energy");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 57, 73, 25));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Oxygen");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 57, 73, 25));
 
         checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setForeground(new java.awt.Color(255, 255, 255));
         checkPosition.setText("Position");
         checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkPosition.addActionListener(new java.awt.event.ActionListener() {
@@ -182,113 +221,10 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 checkPositionActionPerformed(evt);
             }
         });
+        getContentPane().add(checkPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 91, 157, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnTMissile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnShoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnTridentMissile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnSonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(solderSpinner)
-                                    .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(sliderOxygen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(oxygenText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnShoot)
-                                .addComponent(btnSonar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(checkPosition)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTMissile)
-                            .addComponent(btnTridentMissile))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(solderSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(oxygenText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(sliderOxygen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(15, 15, 15))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Netbeans Projects\\Defense-System\\src\\images\\submarine-control-room-stockcake.jpg")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -477,6 +413,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnTridentMissile;
     private javax.swing.JCheckBox checkPosition;
     private javax.swing.JTextField energyText;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

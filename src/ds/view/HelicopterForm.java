@@ -71,25 +71,33 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         sliderEnergy = new javax.swing.JSlider();
         checkPosition = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A78 Eagle");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         solderSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 solderSpinnerStateChanged(evt);
             }
         });
+        getContentPane().add(solderSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 201, 97, -1));
 
         ammoSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 ammoSpinnerStateChanged(evt);
             }
         });
+        getContentPane().add(ammoSpinner, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 226, 97, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Soldiers");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 201, 48, -1));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ammo");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 229, 48, -1));
 
         energyText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         energyText.addActionListener(new java.awt.event.ActionListener() {
@@ -97,11 +105,14 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 energyTextActionPerformed(evt);
             }
         });
+        getContentPane().add(energyText, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 85, 73, 29));
 
         lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         lblArea.setForeground(new java.awt.Color(255, 51, 51));
         lblArea.setText("Area is Not Cleared");
+        getContentPane().add(lblArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 57, 232, 31));
 
+        btnShoot.setBackground(new java.awt.Color(153, 153, 255));
         btnShoot.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnShoot.setText("Shoot");
         btnShoot.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +120,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 btnShootActionPerformed(evt);
             }
         });
+        getContentPane().add(btnShoot, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 106, 130, -1));
 
+        btnMissile.setBackground(new java.awt.Color(255, 153, 153));
         btnMissile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMissile.setText("Missile Opration");
         btnMissile.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +130,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 btnMissileActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMissile, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 106, -1, -1));
 
+        btnLaser.setBackground(new java.awt.Color(255, 255, 153));
         btnLaser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLaser.setText("Laser Opration");
         btnLaser.addActionListener(new java.awt.event.ActionListener() {
@@ -125,11 +140,16 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 btnLaserActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLaser, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 144, -1, -1));
 
+        txtAreaHelicopter.setBackground(new java.awt.Color(0, 0, 0));
         txtAreaHelicopter.setColumns(20);
         txtAreaHelicopter.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        txtAreaHelicopter.setForeground(new java.awt.Color(51, 153, 0));
         txtAreaHelicopter.setRows(5);
         jScrollPane1.setViewportView(txtAreaHelicopter);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 201, 301, 122));
 
         btnSend.setBackground(new java.awt.Color(0, 204, 0));
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -140,24 +160,33 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 btnSendActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 341, 81, 30));
 
+        txtMessage.setBackground(new java.awt.Color(51, 51, 51));
+        txtMessage.setForeground(new java.awt.Color(51, 204, 0));
         txtMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMessageActionPerformed(evt);
             }
         });
+        getContentPane().add(txtMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 342, 202, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Helicopter");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, 634, 51));
 
+        sliderEnergy.setForeground(new java.awt.Color(204, 204, 204));
         sliderEnergy.setMajorTickSpacing(10);
         sliderEnergy.setMinorTickSpacing(2);
         sliderEnergy.setOrientation(javax.swing.JSlider.VERTICAL);
         sliderEnergy.setPaintLabels(true);
         sliderEnergy.setPaintTicks(true);
+        getContentPane().add(sliderEnergy, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 120, 71, 280));
 
         checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        checkPosition.setForeground(new java.awt.Color(255, 255, 255));
         checkPosition.setText("Position");
         checkPosition.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkPosition.addActionListener(new java.awt.event.ActionListener() {
@@ -165,92 +194,16 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 checkPositionActionPerformed(evt);
             }
         });
+        getContentPane().add(checkPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 107, 157, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Fuel");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 57, 73, 22));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnLaser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnShoot, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnMissile)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(checkPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(solderSpinner)
-                            .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnShoot)
-                            .addComponent(btnMissile)
-                            .addComponent(checkPosition))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLaser)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(solderSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Netbeans Projects\\Defense-System\\src\\images\\submarine.jpg")); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 650, 410));
 
         getAccessibleContext().setAccessibleDescription("private rocket");
 
@@ -414,6 +367,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblArea;
     private javax.swing.JSlider sliderEnergy;
