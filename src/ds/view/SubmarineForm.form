@@ -78,7 +78,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Component id="sliderEnergy" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="energyText" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel5" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
@@ -86,7 +86,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Component id="sliderOxygen" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="oxygenText" alignment="1" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel6" min="-2" pref="73" max="-2" attributes="0"/>
               </Group>
@@ -102,7 +102,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="lblArea" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnShoot" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -151,8 +150,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="energyText" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="oxygenText" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="sliderEnergy" min="-2" pref="264" max="-2" attributes="0"/>
@@ -181,7 +180,13 @@
         <Property name="text" type="java.lang.String" value="Ammo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="energyText">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblArea">
       <Properties>
@@ -305,7 +310,13 @@
         <Property name="paintTicks" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="oxygenText">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="99" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>

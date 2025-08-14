@@ -23,9 +23,9 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         initComponents();
         setVisible(true);
         btnMissile.setEnabled(false);
-        //btnRadar.setEnabled(false);
+        btnRadar.setEnabled(false);
         btnRotate.setEnabled(false);
-        //btnShoot.setEnabled(false);
+        btnShoot.setEnabled(false);
     }
 
     /**

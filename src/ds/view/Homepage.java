@@ -49,6 +49,7 @@ public class Homepage extends javax.swing.JFrame {
         getAccessibleContext().setAccessibleDescription("The best FPS Game");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed

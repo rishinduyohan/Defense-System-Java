@@ -299,7 +299,10 @@ public class MainForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_btnSendActionPerformed
 
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
-      observer.setSliderControll(jSlider1.getValue());
+        if(checkPrivate.isSelected()){
+            observer.setSliderControll(jSlider1.getValue());
+        }
+        
     }//GEN-LAST:event_jSlider1StateChanged
 
     private void defenceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defenceComboBoxActionPerformed
