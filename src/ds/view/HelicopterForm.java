@@ -7,8 +7,15 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +25,10 @@ import javax.swing.JOptionPane;
 public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     private DefenceObserver observer;
-    private int energy =100;
+    private int energy = 100;
+    private int solders = 200;
+    private int ammo = 1500;
+
     /**
      * Creates new form HelicopterForm
      */
@@ -29,7 +39,10 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         btnLaser.setEnabled(false);
         btnMissile.setEnabled(false);
         btnShoot.setEnabled(false);
+        solderSpinner.setValue(solders);
+        ammoSpinner.setValue(ammo);
         energy();
+        killSolders();
     }
 
     /**
@@ -41,8 +54,8 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
+        solderSpinner = new javax.swing.JSpinner();
+        ammoSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         energyText = new javax.swing.JTextField();
@@ -62,10 +75,23 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A78 Eagle");
 
+        solderSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                solderSpinnerStateChanged(evt);
+            }
+        });
+
+        ammoSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                ammoSpinnerStateChanged(evt);
+            }
+        });
+
         jLabel2.setText("Soldiers");
 
         jLabel3.setText("Ammo");
 
+        energyText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         energyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 energyTextActionPerformed(evt);
@@ -177,8 +203,8 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSpinner1)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(solderSpinner)
+                            .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -207,11 +233,11 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(solderSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,11 +259,33 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         observer.buttonMessage("Helicopter starts shoot !" + "\n");
+        ammoSpinner.setValue(this.ammo--);
+        try {
+            File file = new File("clean-machine-gun-burst-98224.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
+
     }//GEN-LAST:event_btnShootActionPerformed
+    public void killSolders() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    solderSpinner.setValue(this.solders--);
+                    Thread.sleep(4000);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }).start();
+    }
+
     public void energy() {
         new Thread(() -> {
             while (true) {
-                sliderEnergy.setValue(energy--);
+                sliderEnergy.setValue(this.energy--);
                 energyText.setText(energy + "%");
                 if (energy >= 51) {
                     energyText.setBackground(Color.YELLOW);
@@ -254,10 +302,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 try {
                     Thread.sleep(2500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(HelicopterForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (energy == 0) {
-//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
                     int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if (choice == JOptionPane.YES_OPTION) {
                         energy = 100;
@@ -270,6 +317,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         }).start();
 
     }
+
     @Override
     public void message(String message) {
         txtAreaHelicopter.append(message + "\n");
@@ -296,6 +344,14 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
         observer.buttonMessage("Helicopter starts Laser attack !" + "\n");
+        try {
+            File file = new File("plasma-gun-fire-162136.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
@@ -322,13 +378,32 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
         observer.buttonMessage("Helicopter starts a Missile attack!" + "\n");
+        ammoSpinner.setValue(this.ammo-10);
+        
+         try {
+            File file = new File("big-spaceship-missile-1-356318.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void energyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_energyTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_energyTextActionPerformed
 
+    private void solderSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_solderSpinnerStateChanged
+
+    }//GEN-LAST:event_solderSpinnerStateChanged
+
+    private void ammoSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ammoSpinnerStateChanged
+
+    }//GEN-LAST:event_ammoSpinnerStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner ammoSpinner;
     private javax.swing.JButton btnLaser;
     private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnSend;
@@ -340,10 +415,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel lblArea;
     private javax.swing.JSlider sliderEnergy;
+    private javax.swing.JSpinner solderSpinner;
     private javax.swing.JTextArea txtAreaHelicopter;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables

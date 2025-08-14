@@ -19,6 +19,8 @@ public class TankForm extends javax.swing.JFrame implements Controller {
 
     private DefenceObserver observer;
     private int energy = 100;
+    private int solders = 200;
+    private int ammo = 4000;
 
     /**
      * Creates new form TankForm
@@ -31,7 +33,12 @@ public class TankForm extends javax.swing.JFrame implements Controller {
         btnRadar.setEnabled(false);
         btnRotate.setEnabled(false);
         btnShoot.setEnabled(false);
+        solderSpinner.setValue(solders);
+        ammoSpinner.setValue(ammo);
         energy();
+        killSolders();
+        
+        
     }
 
     /**
@@ -44,7 +51,7 @@ public class TankForm extends javax.swing.JFrame implements Controller {
     private void initComponents() {
 
         btnSend = new javax.swing.JButton();
-        jSpinner2 = new javax.swing.JSpinner();
+        ammoSpinner = new javax.swing.JSpinner();
         txtMessage = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -57,7 +64,7 @@ public class TankForm extends javax.swing.JFrame implements Controller {
         btnRadar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaTank = new javax.swing.JTextArea();
-        jSpinner1 = new javax.swing.JSpinner();
+        solderSpinner = new javax.swing.JSpinner();
         checkPosition = new javax.swing.JCheckBox();
         btnRotate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -94,6 +101,7 @@ public class TankForm extends javax.swing.JFrame implements Controller {
         sliderEnergy.setPaintLabels(true);
         sliderEnergy.setPaintTicks(true);
 
+        energyText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         energyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 energyTextActionPerformed(evt);
@@ -132,6 +140,12 @@ public class TankForm extends javax.swing.JFrame implements Controller {
         txtAreaTank.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         txtAreaTank.setRows(5);
         jScrollPane1.setViewportView(txtAreaTank);
+
+        solderSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                solderSpinnerStateChanged(evt);
+            }
+        });
 
         checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         checkPosition.setText("Position");
@@ -192,8 +206,8 @@ public class TankForm extends javax.swing.JFrame implements Controller {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSpinner1)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(solderSpinner)
+                            .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,11 +244,11 @@ public class TankForm extends javax.swing.JFrame implements Controller {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(solderSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ammoSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,10 +271,21 @@ public class TankForm extends javax.swing.JFrame implements Controller {
             JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
         }
     }//GEN-LAST:event_btnSendActionPerformed
+    public void killSolders() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    solderSpinner.setValue(this.solders--);
+                    Thread.sleep(2500);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }).start();
+    }
     public void energy() {
         new Thread(() -> {
             while (true) {
-                sliderEnergy.setValue(energy--);
+                sliderEnergy.setValue(this.energy--);
                 energyText.setText(energy + "%");
                 if (energy >= 51) {
                     energyText.setBackground(Color.YELLOW);
@@ -277,10 +302,9 @@ public class TankForm extends javax.swing.JFrame implements Controller {
                 try {
                     Thread.sleep(2500);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(TankForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (energy == 0) {
-//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
                     int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if (choice == JOptionPane.YES_OPTION) {
                         energy = 100;
@@ -311,6 +335,8 @@ public class TankForm extends javax.swing.JFrame implements Controller {
     }
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         observer.buttonMessage("Tank starts shoot !" + "\n");
+        ammoSpinner.setValue(this.ammo--);
+        
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnRadarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarActionPerformed
@@ -332,18 +358,25 @@ public class TankForm extends javax.swing.JFrame implements Controller {
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
         observer.buttonMessage("Tank starts a Missile attack!" + "\n");
+        ammoSpinner.setValue(this.ammo-15);
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
         observer.buttonMessage("Tank starts a Rotate Shooting!" + "\n");
+        ammoSpinner.setValue(this.ammo-10);
     }//GEN-LAST:event_btnRotateActionPerformed
 
     private void energyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_energyTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_energyTextActionPerformed
 
+    private void solderSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_solderSpinnerStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_solderSpinnerStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner ammoSpinner;
     private javax.swing.JButton btnMissile;
     private javax.swing.JButton btnRadar;
     private javax.swing.JButton btnRotate;
@@ -356,10 +389,9 @@ public class TankForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel lblArea;
     private javax.swing.JSlider sliderEnergy;
+    private javax.swing.JSpinner solderSpinner;
     private javax.swing.JTextArea txtAreaTank;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables

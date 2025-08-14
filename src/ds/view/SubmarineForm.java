@@ -20,6 +20,9 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private DefenceObserver observer;
     private int oxygen = 100;
     private int energy = 100;
+     private int solders = 150;
+    private int ammo = 8000;
+    
 
     /**
      * Creates new form SubmarineForm
@@ -32,8 +35,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
         btnTridentMissile.setEnabled(false);
+        solderSpinner.setValue(solders);
+        ammoSpinner.setValue(ammo);
         oxygen();
         energy();
+        killSolders();
     }
 
     /**
@@ -150,6 +156,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         sliderOxygen.setPaintTicks(true);
 
         oxygenText.setBackground(new java.awt.Color(153, 204, 255));
+        oxygenText.setForeground(new java.awt.Color(255, 255, 255));
         oxygenText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -281,11 +288,24 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         observer.buttonMessage("Submarine Starts shoot!" + "\n");
+        ammoSpinner.setValue(this.ammo--);
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
         observer.buttonMessage("Submarine starts a Toahwak Missile attack!" + "\n");
+        ammoSpinner.setValue(this.ammo-25);
     }//GEN-LAST:event_btnTMissileActionPerformed
+    public void killSolders() {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    solderSpinner.setValue(this.solders--);
+                    Thread.sleep(4000);
+                } catch (InterruptedException ex) {
+                }
+            }
+        }).start();
+    }
     @Override
     public void message(String message) {
         txtAreaSubmarine.append(message + "\n");
@@ -326,10 +346,12 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
         observer.buttonMessage("Submarine Start a Trident Missile attack!" + "\n");
+        ammoSpinner.setValue(this.ammo-30);
     }//GEN-LAST:event_btnTridentMissileActionPerformed
 
     private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
         observer.buttonMessage("Submarine starts a Sonar attack!" + "\n");
+        ammoSpinner.setValue(this.ammo-10);
     }//GEN-LAST:event_btnSonarActionPerformed
     public void oxygen() {
         new Thread(() -> {
@@ -390,7 +412,6 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                     Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (energy == 0) {
-//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
                     int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if (choice == JOptionPane.YES_OPTION) {
                         energy = 100;
