@@ -7,8 +7,15 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 /**
@@ -337,10 +344,28 @@ public class TankForm extends javax.swing.JFrame implements Controller {
         observer.buttonMessage("Tank starts shoot !" + "\n");
         ammoSpinner.setValue(this.ammo--);
         
+         try {
+            File file = new File("clean-machine-gun-burst-98224.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
+        
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnRadarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarActionPerformed
         observer.buttonMessage("Tank starts a Radar attack!" + "\n");
+        
+        try {
+            File file = new File("glitch_27-227097.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnRadarActionPerformed
 
     private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
@@ -359,11 +384,29 @@ public class TankForm extends javax.swing.JFrame implements Controller {
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
         observer.buttonMessage("Tank starts a Missile attack!" + "\n");
         ammoSpinner.setValue(this.ammo-15);
+        
+         try {
+            File file = new File("big-spaceship-missile-1-356318.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
         observer.buttonMessage("Tank starts a Rotate Shooting!" + "\n");
         ammoSpinner.setValue(this.ammo-10);
+        
+        try {
+            File file = new File("grappling-gun-soundeffect-382148.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnRotateActionPerformed
 
     private void energyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_energyTextActionPerformed

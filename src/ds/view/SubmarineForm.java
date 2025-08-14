@@ -298,7 +298,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         ammoSpinner.setValue(this.ammo--);
         
         try {
-            File file = new File("clean-machine-gun-burst-98224.wav");
+            File file = new File("underwatershoot.wav");
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
