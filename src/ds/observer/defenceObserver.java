@@ -6,10 +6,6 @@ package ds.observer;
 
 import ds.controll.Controller;
 
-/**
- *
- * @author acer
- */
 public class DefenceObserver implements Controller {
 
     private Controller[] defenceObserverArray = new Controller[100];

@@ -7,6 +7,8 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +18,8 @@ import javax.swing.JOptionPane;
 public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     private DefenceObserver observer;
+    private int oxygen = 100;
+    private int energy = 100;
 
     /**
      * Creates new form SubmarineForm
@@ -28,6 +32,8 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         btnSonar.setEnabled(false);
         btnTMissile.setEnabled(false);
         btnTridentMissile.setEnabled(false);
+        oxygen();
+        energy();
     }
 
     /**
@@ -43,7 +49,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         ammoSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        energyText = new javax.swing.JTextField();
         lblArea = new javax.swing.JLabel();
         btnShoot = new javax.swing.JButton();
         btnSonar = new javax.swing.JButton();
@@ -56,7 +62,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         sliderEnergy = new javax.swing.JSlider();
         btnTridentMissile = new javax.swing.JButton();
         sliderOxygen = new javax.swing.JSlider();
-        jTextField2 = new javax.swing.JTextField();
+        oxygenText = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         checkPosition = new javax.swing.JCheckBox();
@@ -66,6 +72,9 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         jLabel2.setText("Soldiers");
 
         jLabel3.setText("Ammo");
+
+        energyText.setBackground(new java.awt.Color(255, 255, 153));
+        energyText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         lblArea.setForeground(new java.awt.Color(255, 51, 51));
@@ -140,6 +149,9 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
         sliderOxygen.setPaintLabels(true);
         sliderOxygen.setPaintTicks(true);
 
+        oxygenText.setBackground(new java.awt.Color(153, 204, 255));
+        oxygenText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Energy");
@@ -202,13 +214,13 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(sliderOxygen, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(oxygenText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -220,7 +232,6 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnShoot)
@@ -257,8 +268,8 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(oxygenText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(sliderOxygen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -269,11 +280,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Submarine Starts shoot!"+"\n");
+        observer.buttonMessage("Submarine Starts shoot!" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
-        observer.buttonMessage("Submarine starts a Toahwak Missile attack!"+"\n");
+        observer.buttonMessage("Submarine starts a Toahwak Missile attack!" + "\n");
     }//GEN-LAST:event_btnTMissileActionPerformed
     @Override
     public void message(String message) {
@@ -314,13 +325,84 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
-        observer.buttonMessage("Submarine Start a Trident Missile attack!"+"\n");
+        observer.buttonMessage("Submarine Start a Trident Missile attack!" + "\n");
     }//GEN-LAST:event_btnTridentMissileActionPerformed
 
     private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
-        observer.buttonMessage("Submarine starts a Sonar attack!"+"\n");
+        observer.buttonMessage("Submarine starts a Sonar attack!" + "\n");
     }//GEN-LAST:event_btnSonarActionPerformed
+    public void oxygen() {
+        new Thread(() -> {
+            while (true) {
+                sliderOxygen.setValue(oxygen--);
+                oxygenText.setText(oxygen + "%");
+                if (oxygen >= 51) {
+                    oxygenText.setBackground(Color.BLUE);
+                }
+                if (oxygen <= 50) {
+                    oxygenText.setBackground(Color.orange);
+                }
+                if (oxygen <= 20) {
+                    oxygenText.setBackground(Color.pink);
+                }
+                if (oxygen < 10) {
+                    oxygenText.setBackground(Color.RED);
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (oxygen == 0) {
+                    int desicion = JOptionPane.showConfirmDialog(null, "Submarine has out of oxygen!\nDo you want to refill?", "Oxygen Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (desicion == JOptionPane.YES_OPTION) {
+                        oxygen = 100;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Submarine is out of Area ☠️", "over", JOptionPane.ERROR_MESSAGE);
+                        dispose();
+                    }
+                }
+            }
+        }).start();
 
+    }
+
+    public void energy() {
+        new Thread(() -> {
+            while (true) {
+                sliderEnergy.setValue(energy--);
+                energyText.setText(energy + "%");
+                if (energy >= 51) {
+                    energyText.setBackground(Color.YELLOW);
+                }
+                if (energy <= 50) {
+                    energyText.setBackground(Color.orange);
+                }
+                if (energy <= 20) {
+                    energyText.setBackground(Color.pink);
+                }
+                if (energy < 10) {
+                    energyText.setBackground(Color.RED);
+                }
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (energy == 0) {
+//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
+                    int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        energy = 100;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Submarine is out of Area ☠", "over", JOptionPane.ERROR_MESSAGE);
+                        dispose();
+                    }
+                }
+            }
+        }).start();
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner ammoSpinner;
@@ -330,15 +412,15 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnTMissile;
     private javax.swing.JButton btnTridentMissile;
     private javax.swing.JCheckBox checkPosition;
+    private javax.swing.JTextField energyText;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblArea;
+    private javax.swing.JTextField oxygenText;
     private javax.swing.JSlider sliderEnergy;
     private javax.swing.JSlider sliderOxygen;
     private javax.swing.JSpinner solderSpinner;
@@ -347,7 +429,8 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mainFormMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
 
     @Override
     public void buttonMessage(String message) {
@@ -355,33 +438,35 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     @Override
     public void setPosition(String message) {
-       if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaSubmarine.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=40){
-                btnSonar.setEnabled(true);
-            }else{
-                btnSonar.setEnabled(false);
-            }
-            if(value>=70){
-                btnTMissile.setEnabled(true);
-            }else{
-                btnTMissile.setEnabled(false);
-            }
-            if(value>=90){
-                btnTridentMissile.setEnabled(true);
-            }else{
-                btnTridentMissile.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 40) {
+                    btnSonar.setEnabled(true);
+                } else {
+                    btnSonar.setEnabled(false);
+                }
+                if (value >= 70) {
+                    btnTMissile.setEnabled(true);
+                } else {
+                    btnTMissile.setEnabled(false);
+                }
+                if (value >= 90) {
+                    btnTridentMissile.setEnabled(true);
+                } else {
+                    btnTridentMissile.setEnabled(false);
+                }
             }
         }
     }

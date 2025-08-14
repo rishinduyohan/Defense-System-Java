@@ -7,14 +7,19 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author acer
  */
-public class TankForm extends javax.swing.JFrame implements Controller{
+public class TankForm extends javax.swing.JFrame implements Controller {
+
     private DefenceObserver observer;
+    private int energy = 100;
+
     /**
      * Creates new form TankForm
      */
@@ -23,9 +28,10 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         initComponents();
         setVisible(true);
         btnMissile.setEnabled(false);
-        //btnRadar.setEnabled(false);
+        btnRadar.setEnabled(false);
         btnRotate.setEnabled(false);
-        //btnShoot.setEnabled(false);
+        btnShoot.setEnabled(false);
+        energy();
     }
 
     /**
@@ -43,8 +49,8 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jSlider2 = new javax.swing.JSlider();
-        jTextField1 = new javax.swing.JTextField();
+        sliderEnergy = new javax.swing.JSlider();
+        energyText = new javax.swing.JTextField();
         lblArea = new javax.swing.JLabel();
         btnShoot = new javax.swing.JButton();
         btnMissile = new javax.swing.JButton();
@@ -54,6 +60,7 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         jSpinner1 = new javax.swing.JSpinner();
         checkPosition = new javax.swing.JCheckBox();
         btnRotate = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,11 +88,17 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
         jLabel3.setText("Ammo");
 
-        jSlider2.setMajorTickSpacing(10);
-        jSlider2.setMinorTickSpacing(2);
-        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider2.setPaintLabels(true);
-        jSlider2.setPaintTicks(true);
+        sliderEnergy.setMajorTickSpacing(10);
+        sliderEnergy.setMinorTickSpacing(2);
+        sliderEnergy.setOrientation(javax.swing.JSlider.VERTICAL);
+        sliderEnergy.setPaintLabels(true);
+        sliderEnergy.setPaintTicks(true);
+
+        energyText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                energyTextActionPerformed(evt);
+            }
+        });
 
         lblArea.setFont(new java.awt.Font("Nirmala UI", 1, 20)); // NOI18N
         lblArea.setForeground(new java.awt.Color(255, 51, 51));
@@ -137,6 +150,10 @@ public class TankForm extends javax.swing.JFrame implements Controller{
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Fuel");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,26 +194,29 @@ public class TankForm extends javax.swing.JFrame implements Controller{
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSpinner1)
                             .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblArea, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnShoot)
                             .addComponent(btnMissile)
@@ -219,8 +239,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                            .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,6 +257,42 @@ public class TankForm extends javax.swing.JFrame implements Controller{
             JOptionPane.showConfirmDialog(null, "Enter your message first!", "Error", JOptionPane.OK_CANCEL_OPTION, 0);
         }
     }//GEN-LAST:event_btnSendActionPerformed
+    public void energy() {
+        new Thread(() -> {
+            while (true) {
+                sliderEnergy.setValue(energy--);
+                energyText.setText(energy + "%");
+                if (energy >= 51) {
+                    energyText.setBackground(Color.YELLOW);
+                }
+                if (energy <= 50) {
+                    energyText.setBackground(Color.orange);
+                }
+                if (energy <= 20) {
+                    energyText.setBackground(Color.pink);
+                }
+                if (energy < 10) {
+                    energyText.setBackground(Color.RED);
+                }
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (energy == 0) {
+//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
+                    int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        energy = 100;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Submarine is out of Area ☠", "over", JOptionPane.ERROR_MESSAGE);
+                        dispose();
+                    }
+                }
+            }
+        }).start();
+
+    }
     @Override
     public void message(String message) {
         txtAreaTank.append(message + "\n");
@@ -251,11 +310,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         lblArea.setForeground(Color.RED);
     }
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Tank starts shoot !"+"\n");
+        observer.buttonMessage("Tank starts shoot !" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnRadarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarActionPerformed
-         observer.buttonMessage("Tank starts a Radar attack!"+"\n");
+        observer.buttonMessage("Tank starts a Radar attack!" + "\n");
     }//GEN-LAST:event_btnRadarActionPerformed
 
     private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
@@ -272,12 +331,16 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
-         observer.buttonMessage("Tank starts a Missile attack!"+"\n");
+        observer.buttonMessage("Tank starts a Missile attack!" + "\n");
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
-         observer.buttonMessage("Tank starts a Rotate Shooting!"+"\n");
+        observer.buttonMessage("Tank starts a Rotate Shooting!" + "\n");
     }//GEN-LAST:event_btnRotateActionPerformed
+
+    private void energyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_energyTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_energyTextActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -287,21 +350,23 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
     private javax.swing.JCheckBox checkPosition;
+    private javax.swing.JTextField energyText;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSlider jSlider2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblArea;
+    private javax.swing.JSlider sliderEnergy;
     private javax.swing.JTextArea txtAreaTank;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mainFormMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
 
     @Override
     public void buttonMessage(String message) {
@@ -309,33 +374,35 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
     @Override
     public void setPosition(String message) {
-        if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaTank.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=40){
-                btnMissile.setEnabled(true);
-            }else{
-                btnMissile.setEnabled(false);
-            }
-            if(value>=60){
-                btnRadar.setEnabled(true);
-            }else{
-                btnRadar.setEnabled(false);
-            }
-            if(value>=80){
-                btnRotate.setEnabled(true);
-            }else{
-                btnRotate.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 40) {
+                    btnMissile.setEnabled(true);
+                } else {
+                    btnMissile.setEnabled(false);
+                }
+                if (value >= 60) {
+                    btnRadar.setEnabled(true);
+                } else {
+                    btnRadar.setEnabled(false);
+                }
+                if (value >= 80) {
+                    btnRotate.setEnabled(true);
+                } else {
+                    btnRotate.setEnabled(false);
+                }
             }
         }
     }

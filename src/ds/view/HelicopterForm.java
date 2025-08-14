@@ -7,6 +7,8 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +18,7 @@ import javax.swing.JOptionPane;
 public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     private DefenceObserver observer;
-
+    private int energy =100;
     /**
      * Creates new form HelicopterForm
      */
@@ -27,6 +29,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         btnLaser.setEnabled(false);
         btnMissile.setEnabled(false);
         btnShoot.setEnabled(false);
+        energy();
     }
 
     /**
@@ -42,7 +45,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         jSpinner2 = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        energyText = new javax.swing.JTextField();
         lblArea = new javax.swing.JLabel();
         btnShoot = new javax.swing.JButton();
         btnMissile = new javax.swing.JButton();
@@ -52,7 +55,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         btnSend = new javax.swing.JButton();
         txtMessage = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jSlider2 = new javax.swing.JSlider();
+        sliderEnergy = new javax.swing.JSlider();
         checkPosition = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
@@ -63,9 +66,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
         jLabel3.setText("Ammo");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        energyText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                energyTextActionPerformed(evt);
             }
         });
 
@@ -122,11 +125,11 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Helicopter");
 
-        jSlider2.setMajorTickSpacing(10);
-        jSlider2.setMinorTickSpacing(2);
-        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider2.setPaintLabels(true);
-        jSlider2.setPaintTicks(true);
+        sliderEnergy.setMajorTickSpacing(10);
+        sliderEnergy.setMinorTickSpacing(2);
+        sliderEnergy.setOrientation(javax.swing.JSlider.VERTICAL);
+        sliderEnergy.setPaintLabels(true);
+        sliderEnergy.setPaintTicks(true);
 
         checkPosition.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         checkPosition.setText("Position");
@@ -179,8 +182,8 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -217,9 +220,9 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(energyText, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sliderEnergy, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,8 +232,44 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Helicopter starts shoot !"+"\n");
+        observer.buttonMessage("Helicopter starts shoot !" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
+    public void energy() {
+        new Thread(() -> {
+            while (true) {
+                sliderEnergy.setValue(energy--);
+                energyText.setText(energy + "%");
+                if (energy >= 51) {
+                    energyText.setBackground(Color.YELLOW);
+                }
+                if (energy <= 50) {
+                    energyText.setBackground(Color.orange);
+                }
+                if (energy <= 20) {
+                    energyText.setBackground(Color.pink);
+                }
+                if (energy < 10) {
+                    energyText.setBackground(Color.RED);
+                }
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (energy == 0) {
+//             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
+                    int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        energy = 100;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Submarine is out of Area ☠", "over", JOptionPane.ERROR_MESSAGE);
+                        dispose();
+                    }
+                }
+            }
+        }).start();
+
+    }
     @Override
     public void message(String message) {
         txtAreaHelicopter.append(message + "\n");
@@ -249,15 +288,18 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }
 
     @Override
-    public void mainFormMessage(String message) {}
-     @Override
-    public void buttonMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
+
+    @Override
+    public void buttonMessage(String message) {
+    }
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
-        observer.buttonMessage("Helicopter starts Laser attack !"+"\n");
+        observer.buttonMessage("Helicopter starts Laser attack !" + "\n");
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-       if (!"".equals(txtMessage.getText())) {
+        if (!"".equals(txtMessage.getText())) {
             observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
             txtMessage.setText("");
         } else {
@@ -279,12 +321,12 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
-        observer.buttonMessage("Helicopter starts a Missile attack!"+"\n");
+        observer.buttonMessage("Helicopter starts a Missile attack!" + "\n");
     }//GEN-LAST:event_btnMissileActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void energyTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_energyTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_energyTextActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaser;
@@ -292,48 +334,48 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnShoot;
     private javax.swing.JCheckBox checkPosition;
+    private javax.swing.JTextField energyText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSlider jSlider2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblArea;
+    private javax.swing.JSlider sliderEnergy;
     private javax.swing.JTextArea txtAreaHelicopter;
     private javax.swing.JTextField txtMessage;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setPosition(String message) {
-        if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaHelicopter.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=50){
-                btnMissile.setEnabled(true);
-            }else{
-                btnMissile.setEnabled(false);
-            }
-            if(value>=80){
-                btnLaser.setEnabled(true);
-            }else{
-                btnLaser.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 50) {
+                    btnMissile.setEnabled(true);
+                } else {
+                    btnMissile.setEnabled(false);
+                }
+                if (value >= 80) {
+                    btnLaser.setEnabled(true);
+                } else {
+                    btnLaser.setEnabled(false);
+                }
             }
         }
     }
-
-   
 
 }
