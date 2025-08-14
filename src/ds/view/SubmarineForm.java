@@ -7,8 +7,15 @@ package ds.view;
 import ds.controll.Controller;
 import ds.observer.DefenceObserver;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 /**
@@ -289,11 +296,29 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
         observer.buttonMessage("Submarine Starts shoot!" + "\n");
         ammoSpinner.setValue(this.ammo--);
+        
+        try {
+            File file = new File("clean-machine-gun-burst-98224.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
         observer.buttonMessage("Submarine starts a Toahwak Missile attack!" + "\n");
         ammoSpinner.setValue(this.ammo-25);
+        
+        try {
+            File file = new File("big-spaceship-missile-1-356318.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnTMissileActionPerformed
     public void killSolders() {
         new Thread(() -> {
@@ -347,11 +372,29 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
         observer.buttonMessage("Submarine Start a Trident Missile attack!" + "\n");
         ammoSpinner.setValue(this.ammo-30);
+        
+         try {
+            File file = new File("rocket-launch-306441.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnTridentMissileActionPerformed
 
     private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
         observer.buttonMessage("Submarine starts a Sonar attack!" + "\n");
         ammoSpinner.setValue(this.ammo-10);
+        
+         try {
+            File file = new File("sonar-107581.wav");
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
     }//GEN-LAST:event_btnSonarActionPerformed
     public void oxygen() {
         new Thread(() -> {
