@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     private DefenceObserver observer;
-     private int oxygen = 100;
+    private int oxygen = 100;
     private int energy = 100;
 
     /**
@@ -280,11 +280,11 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Submarine Starts shoot!"+"\n");
+        observer.buttonMessage("Submarine Starts shoot!" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnTMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTMissileActionPerformed
-        observer.buttonMessage("Submarine starts a Toahwak Missile attack!"+"\n");
+        observer.buttonMessage("Submarine starts a Toahwak Missile attack!" + "\n");
     }//GEN-LAST:event_btnTMissileActionPerformed
     @Override
     public void message(String message) {
@@ -325,27 +325,27 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnTridentMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTridentMissileActionPerformed
-        observer.buttonMessage("Submarine Start a Trident Missile attack!"+"\n");
+        observer.buttonMessage("Submarine Start a Trident Missile attack!" + "\n");
     }//GEN-LAST:event_btnTridentMissileActionPerformed
 
     private void btnSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonarActionPerformed
-        observer.buttonMessage("Submarine starts a Sonar attack!"+"\n");
+        observer.buttonMessage("Submarine starts a Sonar attack!" + "\n");
     }//GEN-LAST:event_btnSonarActionPerformed
     public void oxygen() {
         new Thread(() -> {
             while (true) {
                 sliderOxygen.setValue(oxygen--);
                 oxygenText.setText(oxygen + "%");
-                if(oxygen >= 51){
+                if (oxygen >= 51) {
                     oxygenText.setBackground(Color.BLUE);
                 }
-                if(oxygen<= 50){
+                if (oxygen <= 50) {
                     oxygenText.setBackground(Color.orange);
                 }
-                if(oxygen<= 20){
+                if (oxygen <= 20) {
                     oxygenText.setBackground(Color.pink);
                 }
-                if(oxygen<10){
+                if (oxygen < 10) {
                     oxygenText.setBackground(Color.RED);
                 }
                 try {
@@ -354,7 +354,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                     Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (oxygen == 0) {
-                    int desicion = JOptionPane.showConfirmDialog(null,"Submarine has out of oxygen!\nDo you want to refill?","Oxygen Low!!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                    int desicion = JOptionPane.showConfirmDialog(null, "Submarine has out of oxygen!\nDo you want to refill?", "Oxygen Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if (desicion == JOptionPane.YES_OPTION) {
                         oxygen = 100;
                     } else {
@@ -372,16 +372,16 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
             while (true) {
                 sliderEnergy.setValue(energy--);
                 energyText.setText(energy + "%");
-                if(energy >= 51){
+                if (energy >= 51) {
                     energyText.setBackground(Color.YELLOW);
                 }
-                if(energy<= 50){
+                if (energy <= 50) {
                     energyText.setBackground(Color.orange);
                 }
-                if(energy<= 20){
+                if (energy <= 20) {
                     energyText.setBackground(Color.pink);
                 }
-                if(energy<10){
+                if (energy < 10) {
                     energyText.setBackground(Color.RED);
                 }
                 try {
@@ -391,7 +391,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                 }
                 if (energy == 0) {
 //             JOptionPane.showMessageDialog(null, "Submarine has Not avalbel Oxegen", "Error", JOptionPane.ERROR_MESSAGE);
-                    int choice = JOptionPane.showConfirmDialog(null,"Submarine has out of Energy!\nDo you want to refill?","Energy Low!!!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+                    int choice = JOptionPane.showConfirmDialog(null, "Submarine has out of Energy!\nDo you want to refill?", "Energy Low!!!", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if (choice == JOptionPane.YES_OPTION) {
                         energy = 100;
                     } else {
@@ -429,7 +429,8 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mainFormMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
 
     @Override
     public void buttonMessage(String message) {
@@ -437,33 +438,35 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
 
     @Override
     public void setPosition(String message) {
-       if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaSubmarine.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=40){
-                btnSonar.setEnabled(true);
-            }else{
-                btnSonar.setEnabled(false);
-            }
-            if(value>=70){
-                btnTMissile.setEnabled(true);
-            }else{
-                btnTMissile.setEnabled(false);
-            }
-            if(value>=90){
-                btnTridentMissile.setEnabled(true);
-            }else{
-                btnTridentMissile.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 40) {
+                    btnSonar.setEnabled(true);
+                } else {
+                    btnSonar.setEnabled(false);
+                }
+                if (value >= 70) {
+                    btnTMissile.setEnabled(true);
+                } else {
+                    btnTMissile.setEnabled(false);
+                }
+                if (value >= 90) {
+                    btnTridentMissile.setEnabled(true);
+                } else {
+                    btnTridentMissile.setEnabled(false);
+                }
             }
         }
     }

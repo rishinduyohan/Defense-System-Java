@@ -13,8 +13,10 @@ import javax.swing.JOptionPane;
  *
  * @author acer
  */
-public class TankForm extends javax.swing.JFrame implements Controller{
+public class TankForm extends javax.swing.JFrame implements Controller {
+
     private DefenceObserver observer;
+
     /**
      * Creates new form TankForm
      */
@@ -251,11 +253,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
         lblArea.setForeground(Color.RED);
     }
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Tank starts shoot !"+"\n");
+        observer.buttonMessage("Tank starts shoot !" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
 
     private void btnRadarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRadarActionPerformed
-         observer.buttonMessage("Tank starts a Radar attack!"+"\n");
+        observer.buttonMessage("Tank starts a Radar attack!" + "\n");
     }//GEN-LAST:event_btnRadarActionPerformed
 
     private void checkPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkPositionActionPerformed
@@ -272,11 +274,11 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
-         observer.buttonMessage("Tank starts a Missile attack!"+"\n");
+        observer.buttonMessage("Tank starts a Missile attack!" + "\n");
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
-         observer.buttonMessage("Tank starts a Rotate Shooting!"+"\n");
+        observer.buttonMessage("Tank starts a Rotate Shooting!" + "\n");
     }//GEN-LAST:event_btnRotateActionPerformed
 
 
@@ -301,7 +303,8 @@ public class TankForm extends javax.swing.JFrame implements Controller{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void mainFormMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
 
     @Override
     public void buttonMessage(String message) {
@@ -309,33 +312,35 @@ public class TankForm extends javax.swing.JFrame implements Controller{
 
     @Override
     public void setPosition(String message) {
-        if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaTank.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=40){
-                btnMissile.setEnabled(true);
-            }else{
-                btnMissile.setEnabled(false);
-            }
-            if(value>=60){
-                btnRadar.setEnabled(true);
-            }else{
-                btnRadar.setEnabled(false);
-            }
-            if(value>=80){
-                btnRotate.setEnabled(true);
-            }else{
-                btnRotate.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 40) {
+                    btnMissile.setEnabled(true);
+                } else {
+                    btnMissile.setEnabled(false);
+                }
+                if (value >= 60) {
+                    btnRadar.setEnabled(true);
+                } else {
+                    btnRadar.setEnabled(false);
+                }
+                if (value >= 80) {
+                    btnRotate.setEnabled(true);
+                } else {
+                    btnRotate.setEnabled(false);
+                }
             }
         }
     }

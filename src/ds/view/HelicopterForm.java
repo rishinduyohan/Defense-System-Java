@@ -229,7 +229,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShootActionPerformed
-        observer.buttonMessage("Helicopter starts shoot !"+"\n");
+        observer.buttonMessage("Helicopter starts shoot !" + "\n");
     }//GEN-LAST:event_btnShootActionPerformed
     @Override
     public void message(String message) {
@@ -249,15 +249,18 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }
 
     @Override
-    public void mainFormMessage(String message) {}
-     @Override
-    public void buttonMessage(String message) {}
+    public void mainFormMessage(String message) {
+    }
+
+    @Override
+    public void buttonMessage(String message) {
+    }
     private void btnLaserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaserActionPerformed
-        observer.buttonMessage("Helicopter starts Laser attack !"+"\n");
+        observer.buttonMessage("Helicopter starts Laser attack !" + "\n");
     }//GEN-LAST:event_btnLaserActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-       if (!"".equals(txtMessage.getText())) {
+        if (!"".equals(txtMessage.getText())) {
             observer.mainFormMessage("Helicopter : " + txtMessage.getText() + "\n");
             txtMessage.setText("");
         } else {
@@ -279,7 +282,7 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
     }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnMissileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMissileActionPerformed
-        observer.buttonMessage("Helicopter starts a Missile attack!"+"\n");
+        observer.buttonMessage("Helicopter starts a Missile attack!" + "\n");
     }//GEN-LAST:event_btnMissileActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -308,32 +311,32 @@ public class HelicopterForm extends javax.swing.JFrame implements Controller {
 
     @Override
     public void setPosition(String message) {
-        if(checkPosition.isSelected()){
+        if (checkPosition.isSelected()) {
             txtAreaHelicopter.append(message);
         }
     }
 
     @Override
     public void setSliderControll(int value) {
-        if(value>=0 && value<=100){
-            if(value>=20){
-                btnShoot.setEnabled(true);
-            }else{
-                btnShoot.setEnabled(false);
-            }
-            if(value>=50){
-                btnMissile.setEnabled(true);
-            }else{
-                btnMissile.setEnabled(false);
-            }
-            if(value>=80){
-                btnLaser.setEnabled(true);
-            }else{
-                btnLaser.setEnabled(false);
+        if (checkPosition.isSelected()) {
+            if (value >= 0 && value <= 100) {
+                if (value >= 20) {
+                    btnShoot.setEnabled(true);
+                } else {
+                    btnShoot.setEnabled(false);
+                }
+                if (value >= 50) {
+                    btnMissile.setEnabled(true);
+                } else {
+                    btnMissile.setEnabled(false);
+                }
+                if (value >= 80) {
+                    btnLaser.setEnabled(true);
+                } else {
+                    btnLaser.setEnabled(false);
+                }
             }
         }
     }
-
-   
 
 }
