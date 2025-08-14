@@ -349,7 +349,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                     oxygenText.setBackground(Color.RED);
                 }
                 try {
-                    Thread.sleep(2500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -385,7 +385,7 @@ public class SubmarineForm extends javax.swing.JFrame implements Controller {
                     energyText.setBackground(Color.RED);
                 }
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2500);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(SubmarineForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
