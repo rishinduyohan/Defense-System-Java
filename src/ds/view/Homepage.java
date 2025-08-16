@@ -5,18 +5,24 @@
 package ds.view;
 
 import ds.observer.DefenceObserver;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  *
  * @author acer
  */
 public class Homepage extends javax.swing.JFrame {
-
+    private File file = new File("background.wav");
+    private Clip clip;
     /**
      * Creates new form Homepage
      */
     public Homepage() {
         initComponents();
+        playSound();
     }
 
     /**
@@ -59,7 +65,20 @@ public class Homepage extends javax.swing.JFrame {
         dfo.addDefenceObserver(new SubmarineForm(dfo));
         dfo.addDefenceObserver(new TankForm(dfo));
         this.dispose();
+        clip.stop();
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+    
+      public void playSound() {
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+      }
 
     /**
      * @param args the command line arguments
